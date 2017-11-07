@@ -2,24 +2,20 @@ package com.ppcarrasco.teachus.adapters;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.data.Document;
-import com.ppcarrasco.teachus.data.Nodes;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,6 +28,7 @@ import java.util.List;
 public class UploadAdapter extends RecyclerView.Adapter<UploadAdapter.ViewHolder>{
     private List<Document> list;
     private StorageReference storageRef;
+
 
     public UploadAdapter(List<Document> list) {
         this.list = list;
