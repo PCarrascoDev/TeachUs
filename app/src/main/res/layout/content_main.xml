@@ -8,21 +8,9 @@
     tools:context="com.ppcarrasco.teachus.views.MainActivity"
     tools:showIn="@layout/activity_main">
 
-
-    <android.support.constraint.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/verticalGuideline"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
-
-    <ImageView
-        android:layout_width="0dp"
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintRight_toLeftOf="@+id/verticalGuideline"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_add"/>
+        android:id="@+id/documentsRv"/>
 
 </android.support.constraint.ConstraintLayout>
