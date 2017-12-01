@@ -34,6 +34,7 @@ public class Nodes {
         return root.child("documents");
     }
 
+
     public DatabaseReference getDocIndex()
     {
         return root.child("documentsIndex");

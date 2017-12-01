@@ -23,12 +23,12 @@
         <activity android:name=".views.FormActivity" />
         <activity
             android:name=".views.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.UploadActivity"
-            android:label="@string/title_activity_upload"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

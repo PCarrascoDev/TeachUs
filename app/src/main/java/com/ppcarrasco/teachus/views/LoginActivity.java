@@ -1,8 +1,9 @@
 package com.ppcarrasco.teachus.views;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ResultCodes;
@@ -21,11 +22,17 @@ import java.util.Arrays;
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 111;
+    //private ImageView loginIv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+
+        //loginIv = (ImageView) findViewById(R.id.loginIv);
+
+        //new GetPhotos().execute();
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             logged();
@@ -48,14 +55,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void singIn(){
-
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
-                        .setProviders(Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build()))
+                        .setProviders(Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
+                                new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
                         .setIsSmartLockEnabled(!BuildConfig.DEBUG)
                         .setTheme(R.style.LoginTheme)
-                        //.setLogo(R.mipmap.logo)
+                        .setLogo(R.drawable.teachuslogo)
                         .build(),
                 RC_SIGN_IN);
     }
@@ -71,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (dataSnapshot.exists())
                 {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
                 }
                 else
                 {
@@ -86,5 +94,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*private class GetPhotos extends GetSplash {
+
+        CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.mainLayout);
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(List<Unsplash> unsplashes){
+            String url = unsplashes.get(0).getUrls().getFull();
+            Log.d("URL", url);
+            Glide.with(LoginActivity.this).load(url).into(loginIv);
+        }
+    }*/
 
 }
