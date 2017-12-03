@@ -34,12 +34,14 @@ public class Nodes {
         return root.child("documents");
     }
 
-
     public DatabaseReference getDocIndex()
     {
         return root.child("documentsIndex");
     }
 
+    public DatabaseReference getLikes(){ return root.child("likes"); }
+    public DatabaseReference getDislikes(){ return root.child("dislikes"); }
+    public DatabaseReference getLikedBy(){ return root.child("likedBy"); }
     public StorageReference getStorageDocuments(){
         return storage.child("documents");
     }

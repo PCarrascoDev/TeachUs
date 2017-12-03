@@ -48,7 +48,8 @@
         <activity
             android:name=".views.DocumentActivity"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".views.MainActivity"/>
     </application>
 
 </manifest>

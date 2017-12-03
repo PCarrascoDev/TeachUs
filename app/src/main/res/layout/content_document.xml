@@ -8,13 +8,82 @@
     tools:context="com.ppcarrasco.teachus.views.DocumentActivity"
     tools:showIn="@layout/activity_document">
 
-    <TextView
-        android:id="@+id/nestedTv"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textColor="@color/tw__composer_black"
-        android:textSize="25sp"
-        android:text="Document Title" />
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/nestedTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:textColor="@color/tw__composer_black"
+            android:textSize="25sp"
+            android:text="Document Title" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nestedAuthorTv"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:textColor="@color/tw__composer_deep_gray"
+            android:textSize="20sp"
+            android:layout_below="@+id/nestedTv"
+            android:text="Author"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/dislikeTv"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/nestedAuthorTv"
+            android:paddingEnd="@dimen/text_margin"
+            android:gravity="center"
+            android:text="  "/>
+
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/dislikeBtn"
+            android:layout_below="@+id/nestedAuthorTv"
+            android:layout_toStartOf="@id/dislikeTv"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/ic_thumb_down_gray"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/likeTv"
+            android:layout_below="@+id/nestedAuthorTv"
+            android:layout_toStartOf="@id/dislikeBtn"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:text="  "/>
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/likeBtn"
+            android:layout_below="@+id/nestedAuthorTv"
+            android:layout_toStartOf="@id/likeTv"
+            android:background="@drawable/ic_thumb_up_gray" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/divider"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/likeTv"
+            android:background="@color/tw__light_gray"/>
+
+        <android.support.v7.widget.RecyclerView
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionRv"
+            android:layout_below="@+id/divider"/>
+
+    </RelativeLayout>
+
 
 </android.support.v4.widget.NestedScrollView>
