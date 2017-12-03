@@ -18,16 +18,25 @@ import com.ppcarrasco.teachus.models.Document;
 
 public class DocumentsAdapter extends FirebaseRecyclerAdapter<Document, DocumentsAdapter.DocumentHolder>{
 
-    public DocumentsAdapter() {
+    private DocumentsListener listener;
+
+    public DocumentsAdapter(DocumentsListener listener) {
         super(Document.class, R.layout.list_item_document, DocumentHolder.class, new Nodes().getDocuments());
+        this.listener = listener;
     }
 
 
     @Override
-    protected void populateViewHolder(DocumentHolder viewHolder, Document model, int position) {
+    protected void populateViewHolder(DocumentHolder viewHolder, final Document model, int position) {
         viewHolder.documentTv.setText(model.getName());
         viewHolder.authorTv.setText(model.getAuthor());
         viewHolder.setImage(model.getThumbnailUrl());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onPressed(model);
+            }
+        });
     }
 
 

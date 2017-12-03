@@ -1,10 +1,12 @@
 package com.ppcarrasco.teachus.models;
 
+import java.io.Serializable;
+
 /**
  * Created by pedro on 29-11-2017.
  */
 
-public class Document {
+public class Document implements Serializable {
     private String author;
     private String authorUid;
     private String name;

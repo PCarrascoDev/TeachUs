@@ -21,11 +21,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.adapters.DocumentsAdapter;
+import com.ppcarrasco.teachus.adapters.DocumentsListener;
 import com.ppcarrasco.teachus.data.CurrentUser;
 import com.ppcarrasco.teachus.data.Nodes;
+import com.ppcarrasco.teachus.models.Document;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DocumentsListener {
 
     private DocumentsAdapter adapter;
 
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        adapter = new DocumentsAdapter();
+        adapter = new DocumentsAdapter(this);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.documentsRv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -146,5 +148,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onPressed(Document document) {
+        Intent intent = new Intent(MainActivity.this, DocumentActivity.class);
+        intent.putExtra("DOC", document);
+        startActivity(intent);
     }
 }
