@@ -56,6 +56,10 @@ public class Question {
         return studentName;
     }
 
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     public void publishQuestion(){
         if (questionKey.equals(""))
         {

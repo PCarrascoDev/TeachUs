@@ -1,12 +1,16 @@
 package com.ppcarrasco.teachus.views;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -85,6 +89,34 @@ public class QuestionsActivity extends AppCompatActivity implements QuestionsLis
                 if (dataSnapshot.getValue(Boolean.class))
                 {
                     //Mostrar el dialog para responder pregunta
+                    final AlertDialog.Builder dialog = new AlertDialog.Builder(QuestionsActivity.this);
+                    final EditText input = new EditText(QuestionsActivity.this);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT);
+                    input.setLayoutParams(lp);
+                    dialog.setView(input);
+                    dialog.setTitle("Respuesta: ");
+                    dialog.setCancelable(true);
+                    dialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if (!input.getText().toString().equals(""))
+                            {
+                                question.setAnswer("R: " + input.getText().toString());
+                                question.publishQuestion();
+                                dialogInterface.dismiss();
+                            }
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    dialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    dialog.show();
                 }
                 else
                 {

@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         adapter = new DocumentsAdapter(this);
