@@ -9,6 +9,7 @@ import com.ppcarrasco.teachus.data.Nodes;
 public class Question {
     private String question;
     private String answer;
+    private String studentName;
     private String studentUid;
     private String proffessorUid;
     private String key;
@@ -17,9 +18,10 @@ public class Question {
     public Question() {
     }
 
-    public Question(String question, String answer, String studentUid, String proffessorUid, String key, String questionKey) {
+    public Question(String question, String answer, String studentName, String studentUid, String proffessorUid, String key, String questionKey) {
         this.question = question;
         this.answer = answer;
+        this.studentName = studentName;
         this.studentUid = studentUid;
         this.proffessorUid = proffessorUid;
         this.key = key;
@@ -48,6 +50,10 @@ public class Question {
 
     public String getQuestionKey() {
         return questionKey;
+    }
+
+    public String getStudentName() {
+        return studentName;
     }
 
     public void publishQuestion(){

@@ -291,19 +291,50 @@ public class DocumentActivity extends AppCompatActivity {
             }
         });
 
-        final EditText questionEt = (EditText) findViewById(R.id.questionEt);
-        Button questionBtn = (Button) findViewById(R.id.questionBtn);
-        questionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!questionEt.getText().toString().matches(""))
-                {
-                    Question myQuestion = new Question(questionEt.getText().toString(), "", new CurrentUser().getUid(), document.getAuthorUid(), document.getKey(), "");
-                    myQuestion.publishQuestion();
-                    questionEt.setText("");
-                }
-            }
-        });
+        new Nodes()
+                .getUsers()
+                .child(new CurrentUser().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.getValue(Boolean.class))
+                        {
+                            //es professor
+                            EditText questionEt = (EditText) findViewById(R.id.questionEt);
+                            questionEt.setVisibility(View.GONE);
+                            Button questionBtn = (Button) findViewById(R.id.questionBtn);
+                            questionBtn.setVisibility(View.GONE);
+                            View divider = findViewById(R.id.divider2);
+                            divider.setVisibility(View.GONE);
+                        }
+                        else
+                        {
+                            //es student
+                            View divider = findViewById(R.id.divider2);
+                            divider.setVisibility(View.VISIBLE);
+                            final EditText questionEt = (EditText) findViewById(R.id.questionEt);
+                            questionEt.setVisibility(View.VISIBLE);
+                            Button questionBtn = (Button) findViewById(R.id.questionBtn);
+                            questionBtn.setVisibility(View.VISIBLE);
+                            questionBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    if (!questionEt.getText().toString().matches(""))
+                                    {
+                                        Question myQuestion = new Question(questionEt.getText().toString(), "", new CurrentUser().getName(), new CurrentUser().getUid(), document.getAuthorUid(), document.getKey(), "");
+                                        myQuestion.publishQuestion();
+                                        questionEt.setText("");
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
 
     }

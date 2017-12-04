@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/responseTv"
+        android:id="@+id/answerTv"
         android:layout_below="@+id/questionTv"
         android:layout_marginStart="@dimen/text_margin"
         android:layout_marginEnd="@dimen/text_margin"
@@ -35,7 +35,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_below="@id/responseTv"
+        android:layout_below="@id/answerTv"
         android:layout_marginTop="5dp"
         android:background="@color/tw__light_gray"/>
 </RelativeLayout>
