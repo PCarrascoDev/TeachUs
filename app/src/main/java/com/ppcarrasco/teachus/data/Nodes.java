@@ -42,6 +42,11 @@ public class Nodes {
     public DatabaseReference getLikes(){ return root.child("likes"); }
     public DatabaseReference getDislikes(){ return root.child("dislikes"); }
     public DatabaseReference getLikedBy(){ return root.child("likedBy"); }
+
+    public DatabaseReference getStudentQuestions(){ return root.child("studentQuestions");}
+    public DatabaseReference getProffessorQuestions(){ return root.child("proffessorQuestions");}
+    public DatabaseReference getQuestions(){return root.child("questions");}
+
     public StorageReference getStorageDocuments(){
         return storage.child("documents");
     }

@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.data.CurrentUser;
 import com.ppcarrasco.teachus.data.Nodes;
 import com.ppcarrasco.teachus.models.Document;
+import com.ppcarrasco.teachus.models.Question;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -265,6 +267,7 @@ public class DocumentActivity extends AppCompatActivity {
             }
         });
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -287,6 +290,22 @@ public class DocumentActivity extends AppCompatActivity {
                 registerReceiver(receiver, filter);
             }
         });
+
+        final EditText questionEt = (EditText) findViewById(R.id.questionEt);
+        Button questionBtn = (Button) findViewById(R.id.questionBtn);
+        questionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!questionEt.getText().toString().matches(""))
+                {
+                    Question myQuestion = new Question(questionEt.getText().toString(), "", new CurrentUser().getUid(), document.getAuthorUid(), document.getKey(), "");
+                    myQuestion.publishQuestion();
+                    questionEt.setText("");
+                }
+            }
+        });
+
+
     }
     void like()
     {

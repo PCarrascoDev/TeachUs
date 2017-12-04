@@ -75,13 +75,36 @@
             android:layout_marginTop="5dp"
             android:layout_below="@+id/likeTv"
             android:background="@color/tw__light_gray"/>
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionEt"
+            android:layout_below="@id/divider"
+            android:layout_marginStart="@dimen/text_margin"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:id="@+id/questionBtn"
+            android:layout_below="@id/divider"
+            android:layout_toEndOf="@id/questionEt"
+            android:background="@drawable/ic_send_resize"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/divider2"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/questionEt"
+            android:background="@color/tw__light_gray"/>
 
         <android.support.v7.widget.RecyclerView
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/questionRv"
-            android:layout_below="@+id/divider"/>
+            android:layout_below="@+id/divider2"/>
 
     </RelativeLayout>
 

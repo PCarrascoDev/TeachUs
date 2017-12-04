@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/studentTv"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:text="Juanito Pregunta: "/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/questionTv"
+        android:layout_below="@id/studentTv"
+        android:layout_marginStart="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginBottom="2dp"
+        android:textSize="15sp"
+        android:textColor="@color/tw__composer_black"
+        android:text="Esta es una pregunta?"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/responseTv"
+        android:layout_below="@+id/questionTv"
+        android:layout_marginStart="@dimen/text_margin"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginBottom="@dimen/text_margin"
+        android:text="R: Bueno, esa es una pregunta muy particular, ya que la raiz cuadrada de tú pregunta al cuadrado nos dice que su valor es positivo, o sea, es pregunta."/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/responseTv"
+        android:layout_marginTop="5dp"
+        android:background="@color/tw__light_gray"/>
+</RelativeLayout>
