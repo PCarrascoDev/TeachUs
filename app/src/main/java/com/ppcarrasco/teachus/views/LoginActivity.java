@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
+import com.crashlytics.android.Crashlytics;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ResultCodes;
 import com.google.firebase.auth.FirebaseAuth;
@@ -12,11 +13,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.ppcarrasco.teachus.BuildConfig;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.data.Nodes;
 
 import java.util.Arrays;
+
+import io.fabric.sdk.android.Fabric;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
 
@@ -60,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                         .createSignInIntentBuilder()
                         .setProviders(Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
                                 new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))
-                        .setIsSmartLockEnabled(!BuildConfig.DEBUG)
+                        .setIsSmartLockEnabled(false)
                         .setTheme(R.style.LoginTheme)
                         .setLogo(R.drawable.teachuslogo)
                         .build(),

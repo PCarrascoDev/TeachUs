@@ -2,6 +2,7 @@ package com.ppcarrasco.teachus.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -52,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+
+
 
         new Nodes().getUsers().child(new CurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -90,6 +97,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header = navigationView.getHeaderView(0);
+
+        TextView emailTv = (TextView) header.findViewById(R.id.emailTv);
+        emailTv.setText(new CurrentUser().getEmail());
+        TextView nameTv = (TextView) header.findViewById(R.id.nameTv);
+        nameTv.setText(new CurrentUser().getName());
     }
 
     @Override
@@ -132,6 +146,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_questions) {
             startActivity(new Intent(MainActivity.this, QuestionsActivity.class));
+        }
+        else if (id == R.id.nav_signOut)
+        {
+            AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        }
+                    });
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ppcarrasco.teachus">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,9 +10,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/teachus_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/teachus_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
@@ -50,7 +51,12 @@
             android:parentActivityName=".views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.QuestionsActivity"
-            android:theme="@style/AppTheme"/>
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <meta-data
+            tools:replace="android:value"
+            android:name="io.fabric.ApiKey"
+            android:value="a3a5d08945a8d262c66d11fa150836ebc75b6eda" />
     </application>
 
 </manifest>

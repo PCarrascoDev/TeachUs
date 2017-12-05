@@ -13,6 +13,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ppcarrasco.teachus.R;
+import com.ppcarrasco.teachus.adapters.QuestionsAdapter;
 import com.ppcarrasco.teachus.data.CurrentUser;
 import com.ppcarrasco.teachus.data.Nodes;
 import com.ppcarrasco.teachus.models.Document;
@@ -46,6 +50,7 @@ public class DocumentActivity extends AppCompatActivity {
     private DatabaseReference likes;
     private DatabaseReference dislikes;
     private DatabaseReference likedBy;
+    private QuestionsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,11 @@ public class DocumentActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        adapter = new QuestionsAdapter(new Nodes().getQuestions().child(document.getKey()));
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.questionRv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
 
         preview = (ImageView) findViewById(R.id.collapsingIv);
 
@@ -76,7 +86,7 @@ public class DocumentActivity extends AppCompatActivity {
                 .into(preview);
 
         TextView title = (TextView) findViewById(R.id.nestedTv);
-        title.setText(document.getName());
+        title.setText(document.getName().split("\\.")[0]);
 
         TextView author = (TextView) findViewById(R.id.nestedAuthorTv);
         author.setText(document.getAuthor());
@@ -268,10 +278,13 @@ public class DocumentActivity extends AppCompatActivity {
         });
 
 
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(DocumentActivity.this, "Descargando...", Toast.LENGTH_SHORT).show();
 
                 final long referenceId = downloadData(Uri.parse(document.getDownloadUrl()), document.getName());
                 receiver = new BroadcastReceiver() {
@@ -412,6 +425,7 @@ public class DocumentActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        adapter.cleanup();
         if (receiver != null)
         {
             unregisterReceiver(receiver);

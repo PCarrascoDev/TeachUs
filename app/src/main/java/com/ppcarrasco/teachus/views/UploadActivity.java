@@ -9,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.github.angads25.filepicker.controller.DialogSelectionListener;
 import com.github.angads25.filepicker.model.DialogConfigs;
@@ -63,7 +62,7 @@ public class UploadActivity extends AppCompatActivity {
         {
             case R.id.navigation_add:
                 addItem();
-                Toast.makeText(this, "Add!!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Add!!", Toast.LENGTH_SHORT).show();
                 return true;
             case android.R.id.home:
                 onBackPressed();
@@ -84,7 +83,7 @@ public class UploadActivity extends AppCompatActivity {
         properties.extensions = null;
 
         FilePickerDialog dialog = new FilePickerDialog(UploadActivity.this, properties);
-        dialog.setTitle("Select a file");
+        dialog.setTitle("Selecciona archivos");
         dialog.setDialogSelectionListener(new DialogSelectionListener() {
             @Override
             public void onSelectedFilePaths(String[] files) {

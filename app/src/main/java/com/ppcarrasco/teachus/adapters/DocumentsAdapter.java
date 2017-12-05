@@ -28,9 +28,11 @@ public class DocumentsAdapter extends FirebaseRecyclerAdapter<Document, Document
 
     @Override
     protected void populateViewHolder(DocumentHolder viewHolder, final Document model, int position) {
-        viewHolder.documentTv.setText(model.getName());
+        viewHolder.documentTv.setText(model.getName().split("\\.")[0]);
         viewHolder.authorTv.setText(model.getAuthor());
         viewHolder.setImage(model.getThumbnailUrl());
+        model.getLikes(viewHolder.lsTv);
+        model.getDislikes(viewHolder.dsTv);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +47,9 @@ public class DocumentsAdapter extends FirebaseRecyclerAdapter<Document, Document
         private TextView documentTv;
         private TextView authorTv;
         private LinearLayout layout;
+        private TextView dsTv;
+        private TextView lsTv;
+        private TextView qsTv;
 
         public DocumentHolder(View itemView) {
             super(itemView);
@@ -52,6 +57,9 @@ public class DocumentsAdapter extends FirebaseRecyclerAdapter<Document, Document
             documentTv = (TextView) itemView.findViewById(R.id.documentTv);
             authorTv = (TextView) itemView.findViewById(R.id.authorTv);
             layout = (LinearLayout) itemView.findViewById(R.id.cardLl);
+            dsTv = (TextView) itemView.findViewById(R.id.dscountTv);
+            lsTv = (TextView) itemView.findViewById(R.id.lsTv);
+            qsTv = (TextView) itemView.findViewById(R.id.qsTv);
         }
 
         public void setImage(String url){

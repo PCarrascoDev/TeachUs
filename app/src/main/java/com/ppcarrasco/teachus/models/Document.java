@@ -1,5 +1,12 @@
 package com.ppcarrasco.teachus.models;
 
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.ppcarrasco.teachus.data.Nodes;
+
 import java.io.Serializable;
 
 /**
@@ -54,5 +61,41 @@ public class Document implements Serializable {
 
     public String getThumbnailUrl() {
         return thumbnailUrl;
+    }
+
+    public void getLikes(final TextView textView){
+        new Nodes().getLikes().child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    Integer val = dataSnapshot.getValue(Integer.class);
+                    textView.setText("Likes: " + String.valueOf(val));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void getDislikes(final TextView textView){
+        new Nodes().getDislikes().child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+                    Integer val = dataSnapshot.getValue(Integer.class);
+                    textView.setText("Dislikes: " + String.valueOf(val));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

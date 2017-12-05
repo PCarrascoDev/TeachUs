@@ -22,17 +22,25 @@ public class QuestionsAdapter extends FirebaseRecyclerAdapter<Question, Question
         this.listener = listener;
     }
 
+    public QuestionsAdapter(DatabaseReference ref) {
+        super(Question.class, R.layout.list_item_question, QuestionHolder.class, ref);
+    }
+
     @Override
     protected void populateViewHolder(QuestionHolder viewHolder, final Question model, int position) {
         viewHolder.student.setText(model.getStudentName());
         viewHolder.question.setText(model.getQuestion());
         viewHolder.answer.setText(model.getAnswer());
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onPressed(model);
-            }
-        });
+        if (listener != null)
+        {
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onPressed(model);
+                }
+            });
+        }
+
     }
 
     public static class QuestionHolder extends RecyclerView.ViewHolder {

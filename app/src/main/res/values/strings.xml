@@ -106,4 +106,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="formText">
+        Estudiante: Tendrás acceso a todo el material subido por los profesores, además de poder realizar preguntas y dejar tú feedback.\n\n
+        Profesor: Podrás subir cualquier material de estudio de tú propiedad, y tendrás derecho exclusivo a contestar preguntas y comentarios que los estudiantes hagan en tus documentos.</string>
 </resources>

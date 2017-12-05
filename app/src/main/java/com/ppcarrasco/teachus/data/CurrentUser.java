@@ -29,4 +29,6 @@ public class CurrentUser {
         return name;
     }
 
+    public String getEmail(){return user.getEmail();}
+
 }
