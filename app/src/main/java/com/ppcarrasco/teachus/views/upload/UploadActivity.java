@@ -62,7 +62,6 @@ public class UploadActivity extends AppCompatActivity {
         {
             case R.id.navigation_add:
                 addItem();
-                //Toast.makeText(this, "Add!!", Toast.LENGTH_SHORT).show();
                 return true;
             case android.R.id.home:
                 onBackPressed();

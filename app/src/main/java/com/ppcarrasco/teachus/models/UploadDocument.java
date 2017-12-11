@@ -39,7 +39,6 @@ public class UploadDocument extends Document {
         PdfiumCore pdfiumCore = new PdfiumCore(context);
         Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_action_emo_err);
         try {
-            //http://www.programcreek.com/java-api-examples/index.php?api=android.os.ParcelFileDescriptor
             ParcelFileDescriptor fd = context.getContentResolver().openFileDescriptor(uri, "r");
             PdfDocument pdfDocument = pdfiumCore.newDocument(fd);
             pdfiumCore.openPage(pdfDocument, pageNumber);

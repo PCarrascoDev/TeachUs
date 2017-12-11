@@ -25,7 +25,6 @@ import io.fabric.sdk.android.Fabric;
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 111;
-    //private ImageView loginIv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
-
-        //loginIv = (ImageView) findViewById(R.id.loginIv);
-
-        //new GetPhotos().execute();
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             logged();
@@ -71,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                 RC_SIGN_IN);
     }
     private void logged(){
-        //startActivity(new Intent(this, MainActivity.class));
 
         DatabaseReference users = new Nodes().getUsers();
         users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -98,22 +92,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*private class GetPhotos extends GetSplash {
-
-        CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.mainLayout);
-
-        @Override
-        protected void onPreExecute() {
-
-        }
-
-        @Override
-        protected void onPostExecute(List<Unsplash> unsplashes){
-            String url = unsplashes.get(0).getUrls().getFull();
-            Log.d("URL", url);
-            Glide.with(LoginActivity.this).load(url).into(loginIv);
-        }
-    }*/
 
 }

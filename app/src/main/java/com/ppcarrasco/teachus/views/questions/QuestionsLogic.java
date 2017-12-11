@@ -12,7 +12,6 @@ import com.ppcarrasco.teachus.models.Question;
  */
 
 public class QuestionsLogic {
-    private Boolean isTeacher;
     private QuestionsCallback callback;
     public QuestionsLogic(final QuestionsCallback callback){
         this.callback = callback;
@@ -24,12 +23,12 @@ public class QuestionsLogic {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.getValue(Boolean.class))
                         {
-                            //setUpAdapter(new Nodes().getProffessorQuestions().child(new CurrentUser().getUid()));
+
                             callback.setUpAdapter(new Nodes().getProffessorQuestions().child(new CurrentUser().getUid()));
                         }
                         else
                         {
-                            //setUpAdapter(new Nodes().getStudentQuestions().child(new CurrentUser().getUid()));
+
                             callback.setUpAdapter(new Nodes().getStudentQuestions().child(new CurrentUser().getUid()));
                         }
                     }
