@@ -1,4 +1,4 @@
-package com.ppcarrasco.teachus.views;
+package com.ppcarrasco.teachus.views.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.data.Nodes;
+import com.ppcarrasco.teachus.views.main.MainActivity;
 
 import java.util.Arrays;
 

@@ -1,9 +1,9 @@
-package com.ppcarrasco.teachus.views;
+package com.ppcarrasco.teachus.views.login;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.data.CurrentUser;
 import com.ppcarrasco.teachus.data.Nodes;
+import com.ppcarrasco.teachus.views.main.MainActivity;
 
 public class FormActivity extends AppCompatActivity {
 

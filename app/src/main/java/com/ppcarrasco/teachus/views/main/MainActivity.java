@@ -1,4 +1,4 @@
-package com.ppcarrasco.teachus.views;
+package com.ppcarrasco.teachus.views.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,10 +27,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.adapters.DocumentsAdapter;
-import com.ppcarrasco.teachus.adapters.DocumentsListener;
 import com.ppcarrasco.teachus.data.CurrentUser;
 import com.ppcarrasco.teachus.data.Nodes;
 import com.ppcarrasco.teachus.models.Document;
+import com.ppcarrasco.teachus.views.document.DocumentActivity;
+import com.ppcarrasco.teachus.views.login.LoginActivity;
+import com.ppcarrasco.teachus.views.questions.QuestionsActivity;
+import com.ppcarrasco.teachus.views.upload.UploadActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, DocumentsListener {
@@ -165,9 +169,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onPressed(Document document) {
+    public void success(Document document) {
         Intent intent = new Intent(MainActivity.this, DocumentActivity.class);
         intent.putExtra("DOC", document);
         startActivity(intent);
+    }
+
+    @Override
+    public void failed() {
+        Toast.makeText(this, "Algo falló :(", Toast.LENGTH_SHORT).show();
     }
 }

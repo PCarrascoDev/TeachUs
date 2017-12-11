@@ -8,6 +8,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.models.Question;
+import com.ppcarrasco.teachus.views.questions.QuestionsLogic;
 
 /**
  * Created by pedro on 03-12-2017.
@@ -15,11 +16,11 @@ import com.ppcarrasco.teachus.models.Question;
 
 public class QuestionsAdapter extends FirebaseRecyclerAdapter<Question, QuestionsAdapter.QuestionHolder>{
 
-    private QuestionsListener listener;
+    private QuestionsLogic questionsLogic;
 
-    public QuestionsAdapter(DatabaseReference ref, QuestionsListener listener) {
+    public QuestionsAdapter(DatabaseReference ref, QuestionsLogic questionsLogic) {
         super(Question.class, R.layout.list_item_question, QuestionHolder.class, ref);
-        this.listener = listener;
+        this.questionsLogic = questionsLogic;
     }
 
     public QuestionsAdapter(DatabaseReference ref) {
@@ -31,12 +32,12 @@ public class QuestionsAdapter extends FirebaseRecyclerAdapter<Question, Question
         viewHolder.student.setText(model.getStudentName());
         viewHolder.question.setText(model.getQuestion());
         viewHolder.answer.setText(model.getAnswer());
-        if (listener != null)
+        if (questionsLogic != null)
         {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onPressed(model);
+                    questionsLogic.processQuestion(model);
                 }
             });
         }

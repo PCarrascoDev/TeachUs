@@ -1,4 +1,4 @@
-package com.ppcarrasco.teachus.adapters;
+package com.ppcarrasco.teachus.views.main;
 
 import com.ppcarrasco.teachus.models.Document;
 
@@ -7,5 +7,6 @@ import com.ppcarrasco.teachus.models.Document;
  */
 
 public interface DocumentsListener {
-    void onPressed(Document document);
+    void success(Document document);
+    void failed();
 }

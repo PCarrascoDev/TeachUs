@@ -11,6 +11,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.ppcarrasco.teachus.R;
 import com.ppcarrasco.teachus.data.Nodes;
 import com.ppcarrasco.teachus.models.Document;
+import com.ppcarrasco.teachus.views.main.DocumentsListener;
+import com.ppcarrasco.teachus.views.main.OpenDocument;
 
 /**
  * Created by pedro on 29-11-2017.
@@ -18,7 +20,7 @@ import com.ppcarrasco.teachus.models.Document;
 
 public class DocumentsAdapter extends FirebaseRecyclerAdapter<Document, DocumentsAdapter.DocumentHolder>{
 
-    private DocumentsListener listener;
+    DocumentsListener listener;
 
     public DocumentsAdapter(DocumentsListener listener) {
         super(Document.class, R.layout.list_item_document, DocumentHolder.class, new Nodes().getDocuments());
@@ -36,7 +38,7 @@ public class DocumentsAdapter extends FirebaseRecyclerAdapter<Document, Document
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onPressed(model);
+                new OpenDocument(model, listener);
             }
         });
     }
